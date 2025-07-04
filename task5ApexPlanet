@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capstone Web App</title>
+  <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --primary-color: #4CAF50;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --primary-color: #BB86FC;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s;
+    }
+
+    header, footer {
+      background: var(--primary-color);
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1em;
+      background: #eee;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 1em;
+    }
+
+    .form-container {
+      background: #f1f1f1;
+      padding: 1em;
+      border-radius: 8px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin: 0.5em 0;
+      padding: 0.8em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+  <header>
+    <h1>Capstone Web App</h1>
+    <p>A complete responsive and optimized single-page web app</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I am a web developer with a passion for creating interactive web pages. This app demonstrates modern front-end skills using HTML, CSS, and JavaScript.</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Lazy Loaded Gallery</h2>
+    <div class="gallery">
+      <img loading="lazy" src="https://picsum.photos/id/1018/600/400" alt="Sample Image 1" />
+      <img loading="lazy" src="https://picsum.photos/id/1025/600/400" alt="Sample Image 2" />
+      <img loading="lazy" src="https://picsum.photos/id/1035/600/400" alt="Sample Image 3" />
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Form</h2>
+    <div class="form-container">
+      <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Capstone Project | Built with ❤ using HTML, CSS & JS</p>
+  </footer>
+
+  <script>
+    // Dark/Light Theme Toggle
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+    }
+
+    // Form Validation
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("All fields are required.");
+        return false;
+      }
+
+      if (!email.includes("@")) {
+        alert("Please enter a valid email.");
+        return false;
+      }
+
+      alert("Message sent successfully!");
+      return true;
+    }
+  </script>
+</body>
+</html>
